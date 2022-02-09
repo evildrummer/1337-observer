@@ -10,3 +10,4 @@ input/*/*
 scans/*/
 screenshot/*.png
 **.resume.cfg
+results/**

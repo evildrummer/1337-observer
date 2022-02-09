@@ -1,7 +1,0 @@
-http://data.markt-schoenberg.de/verwaltung/login.php, Apache, 
-http://kuk.markt-schoenberg.de/, Apache, Schönberger KuK: VG Schönberg, TYPO3 CMS
-http://www.markt-schoenberg.de/, Apache, Markt Schönberg: VG Schönberg, TYPO3 CMS
-https://kuk.markt-schoenberg.de/, Apache, Schönberger KuK: VG Schönberg, TYPO3 CMS
-https://www.kuk.markt-schoenberg.de/, Apache, Schönberger KuK: VG Schönberg, TYPO3 CMS
-http://www.kuk.markt-schoenberg.de/, Apache, Schönberger KuK: VG Schönberg, TYPO3 CMS
-https://www.markt-schoenberg.de/, Apache, Markt Schönberg: VG Schönberg, TYPO3 CMS

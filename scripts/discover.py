@@ -56,7 +56,7 @@ def start_wizard(domain, folder, vuln, hard, skip):
     if os.path.exists(f'{folder}/{domain}/active_banner.txt') == False:
         print(f"\n{Fore.GREEN}[+]{Style.RESET_ALL} Check if websites are up with httpx!")
         os.system(
-            "~/go/bin/httpx -nc -fhr -title -tech-detect -server -status-code -p 80,8080,8081,8443,443,4434,4433,8443,5000,1337 -mc 200 -retries 0 -timeout 3 -maxhr 1 -l '"
+            "~/go/bin/httpx -nc -fhr -title -tech-detect -server -status-code -t 5 -p 80,8080,8081,8443,443,4434,4433,8443,5000,1337 -mc 200 -retries 0 -timeout 3 -maxhr 1 -l '"
             + folder
             + domain
             + "/subs.txt' -o '"
@@ -118,7 +118,7 @@ def start_wizard(domain, folder, vuln, hard, skip):
                 more_tags = ",sqli,rce"          
 
             os.system(
-                "nmap -sV -Pn --top-ports 50 --script vulners --script-args mincvss=9 --open -iL '"
+                "nmap -sV -Pn --top-ports 100 --script vulners --script-args mincvss=9 --open -iL '"
                 + folder
                 + domain
                 + "/active_nmap.txt' -oN '"

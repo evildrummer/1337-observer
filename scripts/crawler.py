@@ -4,7 +4,7 @@ import requests
 requests.packages.urllib3.disable_warnings()
 from concurrent.futures import ThreadPoolExecutor
 import colorama
-from colorama import Fore
+from colorama import Fore, Style
 import os
 import re
 from urllib.parse import urlparse
@@ -21,6 +21,8 @@ max_crawl_count = 10
 
 
 def main():
+    print(f"\n{Fore.GREEN}[+]{Style.RESET_ALL} Running crawler script ...")
+
     with open(input_file, "r") as myfile:
         content = myfile.readlines()
 

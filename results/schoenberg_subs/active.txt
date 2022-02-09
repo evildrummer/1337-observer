@@ -1,0 +1,7 @@
+http://data.markt-schoenberg.de/verwaltung/login.php
+http://kuk.markt-schoenberg.de/
+http://www.markt-schoenberg.de/
+https://kuk.markt-schoenberg.de/
+https://www.kuk.markt-schoenberg.de/
+http://www.kuk.markt-schoenberg.de/
+https://www.markt-schoenberg.de/

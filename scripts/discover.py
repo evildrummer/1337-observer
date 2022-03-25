@@ -118,7 +118,7 @@ def start_wizard(domain, folder, vuln, hard, skip):
                 more_tags = ",sqli,rce"          
 
             os.system(
-                "nmap -sV -Pn --top-ports 100 --script vulners --script-args mincvss=9 --open -iL '"
+                "nmap -v -sV -Pn --top-ports 500 --script vulners --script-args mincvss=9 --open -iL '"
                 + folder
                 + domain
                 + "/active_nmap.txt' -oN '"
@@ -132,7 +132,7 @@ def start_wizard(domain, folder, vuln, hard, skip):
                 "~/go/bin/nuclei -l '"
                 + folder
                 + domain
-                + "/active.txt' -tags cve" + more_tags + " -retries 0 -mhe 1 -s critical -stats -o '"
+                + "/active.txt' -tags cve" + more_tags + " -retries 0 -mhe 1 -s high -stats -o '"
                 + folder
                 + domain
                 + "/cve.txt'"

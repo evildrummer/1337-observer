@@ -1,9 +1,0 @@
-av1.newhp.intern.ccnst.de
-cloud.newhp.intern.ccnst.de
-hs1.newhp.intern.ccnst.de
-l2tp1.tei0.new3.newhp.intern.ccnst.de
-mail.newhp.intern.ccnst.de
-vpn.newhp.intern.ccnst.de
-l2tp1.deg0.new3.newhp.intern.ccnst.de
-newhp.newhp.intern.ccnst.de
-www.newhp.intern.ccnst.de

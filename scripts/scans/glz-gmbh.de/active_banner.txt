@@ -1,0 +1,3 @@
+https://3cx.glz-gmbh.de [200] [IIS7] [Microsoft-IIS/7.5] [IIS,Microsoft ASP.NET,Windows Server]
+https://mx0.glz-gmbh.de [200] [IIS7] [Microsoft-IIS/7.5] [IIS,Microsoft ASP.NET,Windows Server]
+https://remote.glz-gmbh.de [302,302,200] [Windows Small Business Server 2011 Standard - Remotewebzugriff] [Microsoft-IIS/7.5] [IIS,Microsoft ASP.NET,Windows Server] [https://remote.glz-gmbh.de/Remote/logon?ReturnUrl=%2fremote]

@@ -1,0 +1,2 @@
+https://www.muehlbauer-koetzting.de [200] [Mühlbauer Kötzting] [Apache] [Apache]
+http://www.muehlbauer-koetzting.de [200] [Mühlbauer Kötzting] [Apache] [Apache]

@@ -1,0 +1,60 @@
+https://2.56.96.32/yunohost/admin/, nginx, YunoHost admin
+https://2.56.97.18:8443/admin/login.html, None, MineOS Web User Interface
+https://2.56.97.254:443/admin, nginx/1.18.0 (Ubuntu), Loading…
+http://2.56.98.183:8081/, None, Login - Adminer, login required
+https://2.56.99.129:443/, Apache/2.4.38 (Debian), phpMyAdmin, login required
+http://2.56.245.114/auth?logout, txAdmin v4.13.3, txAdmin Login, login required
+http://2.56.254.123/admin/config.php, Apache/2.4.6 (Sangoma) OpenSSL/1.0.2k-fips PHP/5.6.36, FreePBX Administration, login required
+https://2.56.254.20/admin/config.php, Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.6.40, FreePBX Administration, login required
+https://2.56.254.123/admin/config.php, Apache/2.4.6 (Sangoma) OpenSSL/1.0.2k-fips PHP/5.6.36, FreePBX Administration, login required
+http://2.56.254.20:8080/admin/config.php, Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.6.40, FreePBX Administration, login required
+http://2.58.113.201/wp-admin/install.php, Apache/2.4.29 (Ubuntu), WordPress › Installation, login required
+http://2.58.113.132:8080/, CubeCoders-McMyAdmin/IAWS, McMyAdmin - Minecraft Server Web Administration, login required
+https://2.59.133.119/sso/login, nginx, Mailu-Admin | Mailu, login required
+https://2.59.133.158/yunohost/admin/, nginx, YunoHost Admin
+https://2.59.133.119:443/sso/login, nginx, Mailu-Admin | Mailu, login required
+https://2.59.134.28/yunohost/admin/, nginx, YunoHost Admin
+http://2.59.134.222:8080/, Apache/2.4.38 (Debian), phpMyAdmin, login required
+https://2.59.135.43/yunohost/admin/, nginx, YunoHost Admin
+http://2.59.156.233:8080/, Apache/2.4.52 (Debian), phpMyAdmin, login required
+http://2.59.156.248:8080/, Apache/2.4.38 (Debian), phpMyAdmin, login required
+https://5.9.0.162:443/admin/site/login, Apache, , login required
+https://5.9.2.134/admin/login/?next=/admin/, Apache/2.4.29 (Ubuntu), Log in | Django site admin, login required
+http://5.9.2.168:8080/, Apache/2.4.38 (Debian), phpMyAdmin
+http://5.9.2.195:8081/, nginx, phpMyAdmin, login required
+https://5.9.2.134:443/admin/login/?next=/admin/, Apache/2.4.29 (Ubuntu), Log in | Django site admin, login required
+https://5.9.2.226/yunohost/admin/, nginx, YunoHost Admin
+http://5.9.3.10/, Apache/2.2.14 (Unix), Ping-Admin.Com
+http://5.9.3.245/admin/login, nginx/1.6.2 + Phusion Passenger 4.0.53, Stadt Liebe Login | Stadt Liebe, login required
+http://5.10.44.217/admin/Start.asp, GoAhead-Webs, MiVoice Office 400, login required
+https://5.10.56.62:443/, nginx, Securepoint UTM v11 - Admin Interface - 11.8.8.5 (3840b4b)
+http://5.44.98.7:8080/web/admin/home, Apache-Coyote/1.1, Welcome - M.Kather, login required
+https://5.45.0.218:443/, nginx, Securepoint UTM v11 - Admin Interface - 11.7.8 (0bdec97)
+https://5.45.4.66:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.4 (9724fa4)
+https://5.45.4.134:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.1 (1bc0ef6)
+https://5.45.97.56:443/, nginx/1.16.0, Admin
+https://5.45.97.184/yunohost/admin/, nginx, YunoHost Admin
+http://5.45.98.243:8081/, Apache/2.4.52 (Debian), phpMyAdmin, login required
+http://5.45.99.205:8080/, Apache/2.4.38 (Debian), phpMyAdmin, login required
+https://5.45.100.181/yunohost/admin/, nginx, YunoHost Admin
+https://5.45.101.66:443/login.php, Apache/2.4.37 (centos) OpenSSL/1.1.1k, Postfix Admin - 5.45.101.66, login required
+https://5.45.102.103/yunohost/admin/, nginx, YunoHost Admin
+https://5.45.103.243/yunohost/admin/, nginx, YunoHost Admin
+https://5.56.180.139:443/, nginx, Securepoint UTM v11 - Admin Interface - 11.8.16.1 (cdb44b6)
+http://5.57.194.137:8081/, None, Admin
+https://5.63.32.133:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.1 (1bc0ef6)
+https://5.63.38.24:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.1 (1bc0ef6)
+https://5.63.58.76/admin, None, FRITZ!Box
+https://5.100.129.221:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.2 (89f30d4)
+http://5.102.161.139:8081/, None, Admin
+https://5.102.161.107:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.1.9 (78c953d)
+https://5.102.161.209:443/, nginx, Securepoint UTM v11 - Admin Interface - 11.8.16.1 (cdb44b6)
+https://5.102.161.248:443/, nginx, Securepoint UTM v11 - Admin Interface - 11.8.16.1 (cdb44b6)
+https://5.102.163.29/site/login/returnUrl/62479151da875, nginx, Admin | visoma tickets - Login Site, login required
+https://5.104.107.35/auth/login?url=/setup/welcome.do&realm=Administrator, Apache, Untangle Administrator Login, login required
+https://5.145.130.178:443/sslvpn/Login/Login, CPWS, Check Point Mobile - Access denied. This Portal is not supported on this server. Please contact your Administrator for more information (14)
+https://5.145.130.180:443/sslvpn/Login/Login, CPWS, Check Point Mobile - Access denied. This Portal is not supported on this server. Please contact your Administrator for more information (14)
+https://5.145.130.179:443/sslvpn/Login/Login, CPWS, Check Point Mobile - Access denied. This Portal is not supported on this server. Please contact your Administrator for more information (14)
+https://5.145.130.190:443/sslvpn/Login/Login, CPWS, Check Point Mobile - Access denied. This Portal is not supported on this server. Please contact your Administrator for more information (14)
+https://5.145.128.30:443/, nginx, Securepoint UTM v12 - Admin Interface - 12.2.2.1 (1bc0ef6)
+https://5.145.128.22:8443/admin/Start.asp, GoAhead-Webs, MiVoice Office 400, login required
